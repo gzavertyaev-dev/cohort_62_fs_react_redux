@@ -18,23 +18,39 @@ function Counter() {
   const count = useAppSelector(counterSliceSelectors.count)
 
   const onMinus = () => {
+    console.log(counterSliceActions.minus())
     dispatch(counterSliceActions.minus())
   }
 
   const onPlus = () => {
     // counterSliceActions.plus() - это action creator, при вызове которого мы получаем action
     const action = counterSliceActions.plus()
+    console.log(action)
     dispatch(action)
+  }
+
+  const onDivide = () => {
+    dispatch(counterSliceActions.divide(2))
+  }
+
+  const onMultiply = () => {
+    dispatch(counterSliceActions.multiply(3))
   }
 
   return (
     <div className="counter_wrapper">
+      <div className="button_control">
+        <Button name="/" onClick={onDivide} />
+      </div>
       <div className="button_control">
         <Button name="-" onClick={onMinus} />
       </div>
       <p className="count">{count}</p>
       <div className="button_control">
         <Button name="+" onClick={onPlus} />
+      </div>
+      <div className="button_control">
+        <Button name="*" onClick={onMultiply} />
       </div>
     </div>
   )
